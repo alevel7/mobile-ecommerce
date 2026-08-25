@@ -17,7 +17,7 @@ export default function ProductCard(props: ProductCardProps) {
     return (
         <Link href={`/product/${product._id}`} asChild>
             <TouchableOpacity key={`product-${product._id}`} onPress={() => router.push('/')}>
-                <View className="relative w-40 h-56 bg-white rounded-xl shadow-md overflow-hidden">
+                <View className="relative w-40 h-56 bg-white rounded-xl shadow-md overflow-hidden mb-4">
                     <Image source={{ uri: product.images?.[0] ?? '' }} className="w-full h-32" resizeMode="cover" />
                     <View className="p-2">
                         <View className="flex-row items-center mb-1">
