@@ -1,3 +1,10 @@
+export type CategoryItemIcon = 'Mars' | 'Venus' | 'Baby' | 'SportShoe' | 'BriefcaseBusiness' | 'grid' | 'other';
+export interface ICategory {
+    id: number,
+    name: string,
+    icon: CategoryItemIcon
+}
+
 export interface User {
     _id: string;
     name: string;
@@ -55,7 +62,7 @@ export type CartItemProps = {
 };
 
 export type CategoryItemProps = {
-    item: { id: string | number; name: string; icon: string };
+    item: { id: string | number; name: string; icon: CategoryItemIcon };
     isSelected?: boolean;
     onPress?: () => void;
 };
