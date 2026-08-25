@@ -1,3 +1,5 @@
+import { ICategory } from './types';
+
 export const COLORS = {
     primary: "#111111",
     secondary: "#666666",
@@ -7,14 +9,13 @@ export const COLORS = {
     border: "#EEEEEE",
     error: "#FF4444",
 };
-
-export const CATEGORIES = [
-    { id: 1, name: "Men", icon: "man-outline" },
-    { id: 2, name: "Women", icon: "woman-outline" },
-    { id: 3, name: "Kids", icon: "happy-outline" },
-    { id: 4, name: "Shoes", icon: "footsteps-outline" },
-    { id: 5, name: "Bag", icon: "briefcase-outline" },
-    { id: 6, name: "Other", icon: "grid-outline" },
+export const CATEGORIES: ICategory[] = [
+    { id: 1, name: "Men", icon: 'Mars' },
+    { id: 2, name: "Women", icon: 'Venus' },
+    { id: 3, name: "Kids", icon: 'Baby' },
+    { id: 4, name: "Shoes", icon: 'SportShoe' },
+    { id: 5, name: "Bags", icon: 'BriefcaseBusiness' },
+    { id: 6, name: "Other", icon: "other" },
 ];
 
 export const PROFILE_MENU = [
