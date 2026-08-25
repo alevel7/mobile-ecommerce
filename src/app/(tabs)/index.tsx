@@ -123,8 +123,8 @@ export default function Index() {
           {
             loading ?
               ActivityIndicator ? <ActivityIndicator size="large" color="#FF4C3B" /> : <Text>Loading...</Text> :
-              products.length === 0 ?
-                <Text className="text-secondary">No products available.</Text> :
+              // products.length === 0 ?
+              //   <Text className="text-secondary">No products available.</Text> :
                 <View className="flex-row flex-wrap justify-between">
                   {
                     products.slice(0, 5).map((product) => (

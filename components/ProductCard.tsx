@@ -4,12 +4,15 @@ import { ProductCardProps } from "../constants/types";
 import { Image, Text } from "react-native";
 import { useState } from "react";
 import { Heart, Star, StarHalf } from 'lucide-react-native';
+import { useWishlist } from "../context/WishListContext";
 
 
 export default function ProductCard(props: ProductCardProps) {
     const { product } = props;
 
-    const [isLiked, setIsLiked] = useState(false);
+    const {toggleWishlist, isInWishlist} = useWishlist();
+
+    const isLiked = isInWishlist(product._id);
 
     return (
         <Link href={`/product/${product._id}`} asChild>
@@ -35,7 +38,10 @@ export default function ProductCard(props: ProductCardProps) {
                         <Text className="text-sm font-bold text-primary" numberOfLines={1}>{product.name}</Text>
                         <Text className="text-sm text-secondary">${product.price.toFixed(2)}</Text>
                     </View>
-                    <TouchableOpacity className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-sm" onPress={() => setIsLiked(!isLiked)}>
+                    <TouchableOpacity className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-sm" onPress={(e) => {
+                        e.stopPropagation();
+                        toggleWishlist(product);
+                    }}>
                         {
                             isLiked ? (
                                 <Heart size={14} fill='#FF4C3B' stroke='#FF4C3B'/>
