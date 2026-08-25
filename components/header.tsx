@@ -3,10 +3,11 @@ import { HeaderProps } from "../constants/types";
 import { ArrowLeft, Menu, Search, Handbag } from 'lucide-react-native';
 import { COLORS } from "../constants";
 import { useRouter } from "expo-router";
+import { useCart } from "../context/CartContext";
 
 export default function Header({title, showBack, showSearch, showLogo, showCart, showMenu}:HeaderProps) {
     const router = useRouter();
-    const {itemCount} = {itemCount: 6}; // Replace with your actual item count logic
+    const {itemCount} = useCart();
 
     return (
         <View className="flex-row items-center justify-between px-4 py-2 bg-white">
