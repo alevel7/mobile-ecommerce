@@ -8,7 +8,9 @@ import { dummyProducts } from "@/assets/assets";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../../../constants";
 import { ScrollView } from "react-native-gesture-handler";
-import { ArrowLeft, Star, StarHalf } from 'lucide-react-native';
+import { ArrowLeft, Star, StarHalf, Handbag, ShoppingCart } from 'lucide-react-native';
+import Toast from "react-native-toast-message";
+
 
 
 const width = Dimensions.get("window").width;
@@ -20,10 +22,10 @@ export default function ProductDetails() {
 
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [selectedSize, setSelectedSize] = useState<string>('S');
+    const [selectedSize, setSelectedSize] = useState<string>('');
     const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
 
-    const { addToCart, cartItems } = useCart();
+    const { addToCart, cartItems, itemCount } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
 
     const isLiked = product ? isInWishlist(product._id) : false;
@@ -33,6 +35,30 @@ export default function ProductDetails() {
         const product = dummyProducts.find((product) => product._id === productId);
         setProduct(product || null);
         setLoading(false);
+    }
+    const handleAddToCart = async () => {
+        if (!selectedSize) {
+            Toast.show({
+                type: 'info',
+                text1: 'No size selected',
+                text2: 'Please select a size before adding to cart.',
+            });
+            return;
+        }
+        if (!product) {
+            Toast.show({
+                type: 'error',
+                text1: 'Error',
+                text2: 'Product not found.',
+            });
+            return;
+        }
+        addToCart(product, selectedSize)
+        Toast.show({
+            type: 'success',
+            text1: 'Added to Cart',
+            text2: `${product.name} has been added to your cart.`,
+        });
     }
 
     useEffect(() => {
@@ -130,9 +156,17 @@ export default function ProductDetails() {
                     </View>
 
                     {/* Add to Cart Button */}
-                    <TouchableOpacity onPress={() => addToCart(product, selectedSize)} className="bg-primary py-3 rounded-full items-center">
-                        <Text className="text-white text-lg font-bold">Add to Cart</Text>
-                    </TouchableOpacity>
+                    <View className="flex-row justify-center">
+                        <TouchableOpacity onPress={() => handleAddToCart()} className="bg-primary py-3 rounded-full items-center flex-row justify-center w-4/5">
+                            <Handbag size={22} color="#fff" className="mb-1" />
+                            <Text className="text-white text-lg font-bold ml-2">Add to Cart</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => router.push('/cart')} className="py-3 rounded-full items-center flex-row justify-center w-1/5 ml-2 relative">
+                            <ShoppingCart size={22} className="mb-1" />
+                            <Text className="text-white text-xs rounded-full font-bold ml-2 bg-primary absolute top-2 right-4 w-4 h-4 text-center"> {itemCount}</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
             </View>
