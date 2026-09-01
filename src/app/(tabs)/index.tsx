@@ -111,7 +111,7 @@ export default function Index() {
         <View className="mb-6">
           <View className="flex-row justify-between items-center mb-4">
             <Text className="text-lg font-bold text-primary">Products</Text>
-            <TouchableOpacity onPress={() => router.push('/')}>
+            <TouchableOpacity onPress={() => router.push('/shop')}>
               <Text className="text-sm text-secondary">See all</Text>
             </TouchableOpacity>
           </View>
