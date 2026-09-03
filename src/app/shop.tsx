@@ -72,7 +72,7 @@ export default function Shop(props: ShopProps) {
                 ) : (
                         <FlatList 
                         data={products} 
-                        keyExtractor={(item) => `${item._id}`} 
+                            keyExtractor={(item) => `shop-product-${item._id}`} 
                         numColumns={2}
                         contentContainerStyle={{ paddingBottom: 100, padding:16 }}
                         columnWrapperStyle={{ justifyContent: 'space-between' }}

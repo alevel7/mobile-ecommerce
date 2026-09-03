@@ -17,7 +17,7 @@ type CartContextType = {
     cartItems: CartItem[];
     addToCart: (product: Product, size:string) => Promise<void>;
     removeFromCart: (productId: string) => Promise<void>;
-    updateCartItemQuantity: (itemId: string, quantity: number, size:string) => Promise<void>;
+    updateCartItemQuantity: (itemId: string, quantity: number) => Promise<void>;
     clearCart: () => Promise<void>;
     cartTotal: number;
     itemCount: number;
@@ -39,7 +39,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         );
 
         if (existingItem) {
-            await updateCartItemQuantity(existingItem.id, existingItem.quantity + 1, size);
+            await updateCartItemQuantity(existingItem.id, existingItem.quantity + 1);
         } else {
             const newItem: CartItem = {
                 id: `${product._id}-${size}`,
@@ -57,7 +57,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
     }
 
-    const updateCartItemQuantity = async (itemId: string, quantity: number, size:string) => {
+    const updateCartItemQuantity = async (itemId: string, quantity: number) => {
         if (quantity <= 0) {
             await removeFromCart(itemId);
         } else {
@@ -86,7 +86,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 price: item.price,
             }));
             setCartItems(fetchedCartItems);
-            setCartTotal(dummyCart.totalAmount)
+            setCartTotal(fetchedCartItems.reduce((total, item) => total + item.price * item.quantity, 0));
         } catch (error) {
             console.error("Failed to fetch cart items:", error);
         } finally {
@@ -95,6 +95,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
     useEffect(() => {
         setItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
+        setCartTotal(cartItems.reduce((total, item) => total + item.price * item.quantity, 0));
     }, [cartItems]);
     
     useEffect(() => {
