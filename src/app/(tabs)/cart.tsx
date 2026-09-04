@@ -35,7 +35,7 @@ export default function Cart() {
             ))}
             <View className="mt-4 p-4 bg-white rounded-lg shadow">
               <Text className="text-lg font-semibold">Total: ${cartTotal.toFixed(2)}</Text>
-              <TouchableOpacity onPress={() => router.push('/checkout')} className="mt-2 bg-primary py-2 px-4 rounded-lg">
+              <TouchableOpacity onPress={() => router.push('/')} className="mt-2 bg-primary py-2 px-4 rounded-lg">
                 <Text className="text-white text-center">Proceed to Checkout</Text>
               </TouchableOpacity>
             </View>
