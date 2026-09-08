@@ -19,6 +19,8 @@ type CartContextType = {
     removeFromCart: (productId: string) => Promise<void>;
     updateCartItemQuantity: (itemId: string, quantity: number) => Promise<void>;
     clearCart: () => Promise<void>;
+    toggleCartlist: (item: Product, size:string) => void;
+    isInCartlist: (itemId: string) => boolean;
     cartTotal: number;
     itemCount: number;
     isLoading: boolean;
@@ -93,6 +95,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             setIsLoading(false);
         }
     }
+    const isInCartlist = (itemId: string) => {
+        return cartItems.some((item) => item.id === itemId);
+    }
+    const toggleCartlist = (item: Product, size:string) => {
+        if (isInCartlist(item._id)) {
+            removeFromCart(item._id);
+        } else {
+            addToCart(item, size);
+        }
+    }
     useEffect(() => {
         setItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
         setCartTotal(cartItems.reduce((total, item) => total + item.price * item.quantity, 0));
@@ -103,7 +115,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }, []);
     return (
         <CartContext.Provider
-            value={{ cartItems, addToCart, removeFromCart, updateCartItemQuantity, clearCart, cartTotal, itemCount, isLoading }}
+            value={{ cartItems, addToCart, removeFromCart, updateCartItemQuantity, clearCart, cartTotal, itemCount, isLoading, toggleCartlist, isInCartlist }}
         >
             {children}
         </CartContext.Provider>
