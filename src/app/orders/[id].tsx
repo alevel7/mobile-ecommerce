@@ -1,12 +1,12 @@
-import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Image, ScrollView, Text, View, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "@/components/Header";
-import { COLORS } from "@/constants";
-import type { Order, Product } from "@/constants/types";
 import { dummyOrders } from "@/assets/assets";
+import { Order, Product } from "../../../constants/types";
+import { COLORS } from "../../../constants";
+import Header from "../../../components/header";
+import { MapPin } from "lucide-react-native";
 
 export default function OrderDetails() {
     const { id } = useLocalSearchParams();
@@ -103,7 +103,7 @@ export default function OrderDetails() {
                 <View className="bg-white p-4 rounded-xl mb-4 border border-gray-100">
                     <Text className="text-lg font-bold text-primary mb-2">Shipping Details</Text>
                     <View className="flex-row items-center mb-2">
-                        <Ionicons name="location-outline" size={20} color={COLORS.secondary} />
+                        <MapPin size={20} color={COLORS.secondary} />
                         <Text className="text-secondary ml-2 flex-1">
                             {order.shippingAddress?.street}, {order.shippingAddress?.city}, {order.shippingAddress?.zipCode}, {order.shippingAddress?.country}
                         </Text>

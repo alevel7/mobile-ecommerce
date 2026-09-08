@@ -1,12 +1,12 @@
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View, ActivityIndicator, ScrollView, Image } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "@/components/Header";
-import { COLORS, getStatusColor } from "@/constants";
-import type { Order } from "@/constants/types";
 import { dummyOrders, formatDate } from "@/assets/assets";
+import { Order } from "../../../constants/types";
+import Header from "../../../components/header";
+import { COLORS, getStatusColor } from "../../../constants";
+import { ImagePlus } from 'lucide-react-native';
 
 export default function Orders() {
     const router = useRouter();
@@ -84,7 +84,7 @@ export default function Orders() {
                                                 />
                                             ) : (
                                                 <View className="w-12 h-12 bg-gray-200 rounded-md justify-center items-center">
-                                                    <Ionicons name="image-outline" size={20} color={COLORS.secondary} />
+                                                        <ImagePlus size={20} color={COLORS.secondary} />
                                                 </View>
                                             )}
                                         </View>

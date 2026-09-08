@@ -2,10 +2,10 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, TextInput, TouchableOpacity, View, Switch, Image, ActivityIndicator, Platform, Modal, FlatList, TouchableWithoutFeedback } from "react-native";
 import Toast from 'react-native-toast-message';
-import { COLORS, CATEGORIES } from "@/constants";
-import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { dummyProducts } from "@/assets/assets";
+import { CATEGORIES, COLORS } from "../../../../../constants";
+import { ChevronDown, CircleCheck, CircleX, Plus } from "lucide-react-native";
 
 export default function EditProduct() {
     const { id } = useLocalSearchParams();
@@ -188,7 +188,7 @@ export default function EditProduct() {
                     className="bg-surface p-3 rounded-lg mb-4 flex-row justify-between items-center"
                 >
                     <Text className="text-primary">{category || "Select Category"}</Text>
-                    <Ionicons name="chevron-down" size={20} color={COLORS.secondary} />
+                    <ChevronDown size={20} color={COLORS.secondary} />
                 </TouchableOpacity>
 
                 <Modal visible={modalVisible} animationType="slide" transparent>
@@ -209,7 +209,7 @@ export default function EditProduct() {
                                         >
                                             <View className="flex-row justify-between">
                                                 <Text className={`${category === item.name ? "font-bold text-primary" : ""}`}>{item.name}</Text>
-                                                {category === item.name && <Ionicons name="checkmark" size={20} color={COLORS.primary} />}
+                                                {category === item.name && <CircleCheck size={20} color={COLORS.primary} />}
                                             </View>
                                         </TouchableOpacity>
                                     )}
@@ -229,7 +229,7 @@ export default function EditProduct() {
                                     onPress={() => removeExistingImage(index)}
                                     className="absolute top-1 right-1 bg-black/50 rounded-full p-1"
                                 >
-                                    <Ionicons name="close" size={12} color="white" />
+                                    <CircleX size={12} color="white" />
                                 </TouchableOpacity>
                             </View>
                         ))}
@@ -240,7 +240,7 @@ export default function EditProduct() {
                                     onPress={() => removeNewImage(index)}
                                     className="absolute top-1 right-1 bg-primary rounded-full p-1"
                                 >
-                                    <Ionicons name="close" size={12} color="white" />
+                                    <CircleX size={12} color="white" />
                                 </TouchableOpacity>
                             </View>
                         ))}
@@ -249,7 +249,7 @@ export default function EditProduct() {
                                 onPress={pickImages}
                                 className="w-24 h-24 rounded-lg bg-gray-100 justify-center items-center border border-dashed border-gray-300"
                             >
-                                <Ionicons name="add" size={24} color={COLORS.secondary} />
+                                <Plus size={24} color={COLORS.secondary} />
                                 <Text className="text-xs text-secondary mt-1">Add</Text>
                             </TouchableOpacity>
                         )}

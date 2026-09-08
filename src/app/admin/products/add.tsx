@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { ScrollView, Text, TextInput, TouchableOpacity, View, Switch, Image, ActivityIndicator, Modal, FlatList, TouchableWithoutFeedback, Platform, } from "react-native";
 import Toast from 'react-native-toast-message';
-import { COLORS } from "@/constants";
-import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import { CATEGORIES } from "@/constants";
+import { CATEGORIES, COLORS } from "../../../../constants";
+import { ChevronDown, Circle, CircleCheck, CloudUpload } from "lucide-react-native";
 
 export default function AddProduct() {
 
@@ -83,7 +82,7 @@ export default function AddProduct() {
                     className="bg-surface p-3 rounded-lg mb-4 flex-row justify-between items-center"
                 >
                     <Text className="text-primary">{category}</Text>
-                    <Ionicons name="chevron-down" size={20} color={COLORS.secondary} />
+                    <ChevronDown size={20} color={COLORS.secondary} />
                 </TouchableOpacity>
 
                 {/* CATEGORY MODAL */}
@@ -115,8 +114,7 @@ export default function AddProduct() {
                                                     {item.name}
                                                 </Text>
                                                 {category === item.name && (
-                                                    <Ionicons
-                                                        name="checkmark"
+                                                    <CircleCheck
                                                         size={20}
                                                         color={COLORS.primary}
                                                     />
@@ -171,8 +169,7 @@ export default function AddProduct() {
                         </ScrollView>
                     ) : (
                         <View className="w-full h-32 rounded-lg bg-gray-100 justify-center items-center border border-dashed border-gray-300">
-                            <Ionicons
-                                name="cloud-upload-outline"
+                                <CloudUpload
                                 size={32}
                                 color={COLORS.secondary}
                             />

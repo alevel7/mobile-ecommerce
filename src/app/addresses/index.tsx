@@ -1,11 +1,11 @@
-import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View, Modal, TextInput, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "@/components/Header";
-import { COLORS } from "@/constants";
-import type { Address } from "@/constants/types";
 import { dummyAddress } from "@/assets/assets";
+import { Address } from "../../../constants/types";
+import Header from "../../../components/header";
+import { COLORS } from "../../../constants";
+import { Briefcase, Check, CircleX, House, Pencil, Plus, Trash } from "lucide-react-native";
 
 export default function Addresses() {
     const [addresses, setAddresses] = useState<Address[]>([]);
@@ -92,11 +92,13 @@ export default function Addresses() {
                             <View key={item._id} className="bg-white p-4 rounded-xl mb-4 shadow-sm">
                                 <View className="flex-row items-center justify-between mb-2">
                                     <View className="flex-row items-center">
-                                        <Ionicons
-                                            name={item.type === "Home" ? "home-outline" : "briefcase-outline"}
-                                            size={20}
-                                            color={COLORS.primary}
-                                        />
+                                        {
+                                            item.type === "Home" ? (
+                                                <House size={20} color={COLORS.primary} />
+                                            ) : (
+                                                <Briefcase size={20} color={COLORS.primary} />
+                                            )
+                                        }
                                         <Text className="text-base font-bold text-primary ml-2">{item.type}</Text>
                                         {item.isDefault && (
                                             <View className="bg-primary/10 px-2 py-1 rounded ml-2">
@@ -106,10 +108,10 @@ export default function Addresses() {
                                     </View>
                                     <View className="flex-row items-center gap-4">
                                         <TouchableOpacity onPress={() => handleEditSearch(item)}>
-                                            <Ionicons name="pencil-outline" size={20} color={COLORS.secondary} />
+                                           <Pencil size={20} color={COLORS.secondary} />
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleDeleteAddress(item._id)}>
-                                            <Ionicons name="trash-outline" size={20} color={COLORS.error || '#ff4444'} />
+                                           <Trash size={20} color={COLORS.error || '#ff4444'} />
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -121,7 +123,7 @@ export default function Addresses() {
                     )}
 
                     <TouchableOpacity className="flex-row items-center justify-center p-4 border border-dashed border-gray-300 rounded-xl mt-2 mb-8" onPress={openAddModal}>
-                        <Ionicons name="add" size={24} color={COLORS.secondary} />
+                            <Plus size={24} color={COLORS.secondary} />
                         <Text className="text-secondary font-medium ml-2">Add New Address</Text>
                     </TouchableOpacity>
                 </ScrollView>
@@ -134,7 +136,7 @@ export default function Addresses() {
                         <View className="flex-row justify-between items-center mb-6">
                             <Text className="text-xl font-bold text-primary">{isEditing ? "Edit Address" : "Add New Address"}</Text>
                             <TouchableOpacity onPress={() => setModalVisible(false)}>
-                                <Ionicons name="close" size={24} color={COLORS.primary} />
+                                <CircleX size={24} color={COLORS.primary} />
                             </TouchableOpacity>
                         </View>
 
@@ -175,7 +177,7 @@ export default function Addresses() {
 
                             <TouchableOpacity className="flex-row items-center mb-8" onPress={() => setIsDefault(!isDefault)}>
                                 <View className={`w-5 h-5 border rounded mr-2 items-center justify-center ${isDefault ? 'bg-primary border-primary' : 'border-gray-300'}`}>
-                                    {isDefault && <Ionicons name="checkmark" size={14} color="white" />}
+                                    {isDefault && <Check size={14} color="white" />}
                                 </View>
                                 <Text className="text-primary">Set as default address</Text>
                             </TouchableOpacity>

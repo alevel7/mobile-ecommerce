@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View, ActivityIndicator, RefreshControl } from "react-native";
-import { COLORS, getStatusColor } from "@/constants";
 import { dummyAdminStats } from "@/assets/assets";
+import { COLORS, getStatusColor } from "../../../constants";
 
 export default function AdminDashboard() {
     const router = useRouter();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View, ActivityIndicator, RefreshControl, Alert, Modal, TouchableWithoutFeedback, FlatList } from "react-native";
-import { COLORS, getStatusColor } from "@/constants";
-import { Ionicons } from "@expo/vector-icons";
 import { dummyOrders, dummyUser } from "@/assets/assets";
+import { COLORS, getStatusColor } from "../../../constants";
+import { CircleCheck, CircleX, Pencil } from "lucide-react-native";
 
 export default function AdminOrders() {
     const [loading, setLoading] = useState(true);
@@ -116,7 +116,7 @@ export default function AdminOrders() {
                                     className={`flex-row items-center px-4 py-2 rounded-full ${getStatusColor(order.orderStatus)}`}
                                 >
                                     <Text className="text-xs font-bold mr-2 uppercase tracking-wide">{order.orderStatus}</Text>
-                                    <Ionicons name="pencil" size={12} color="black" style={{ opacity: 0.5 }} />
+                                    <Pencil size={12} color="black" style={{ opacity: 0.5 }} />
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -134,7 +134,7 @@ export default function AdminOrders() {
                                     Update Order Status
                                 </Text>
                                 <TouchableOpacity onPress={() => setStatusModalVisible(false)}>
-                                    <Ionicons name="close" size={24} color={COLORS.secondary} />
+                                    <CircleX size={24} color={COLORS.secondary} />
                                 </TouchableOpacity>
                             </View>
 
@@ -158,7 +158,7 @@ export default function AdminOrders() {
                                                 {item}
                                             </Text>
                                             {selectedOrder?.orderStatus === item && (
-                                                <Ionicons name="checkmark-circle" size={20} color={COLORS.primary} />
+                                                <CircleCheck size={20} color={COLORS.primary} />
                                             )}
                                         </TouchableOpacity>
                                     )}

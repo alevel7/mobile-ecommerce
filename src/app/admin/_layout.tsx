@@ -1,9 +1,9 @@
 import { Tabs, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { View, ActivityIndicator, TouchableOpacity, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "@/constants";
 import { dummyUser } from "@/assets/assets";
+import { COLORS } from "../../../constants";
+import { Box, Grid3x3, LogOut, ReceiptText } from "lucide-react-native";
 
 export default function AdminLayout() {
     const { user } = { user: dummyUser }
@@ -44,7 +44,7 @@ export default function AdminLayout() {
                         onPress={() => router.replace("/(tabs)")}
                         className="mr-4 flex-row items-center"
                     >
-                        <Ionicons name="log-out-outline" size={24} color={COLORS.primary} />
+                        <LogOut size={24} color={COLORS.primary} />
                         <Text className="ml-1 text-primary font-medium">Exit</Text>
                     </TouchableOpacity>
                 ),
@@ -55,7 +55,7 @@ export default function AdminLayout() {
                 options={{
                     title: "Dashboard",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="grid-outline" size={size} color={color} />
+                        <Grid3x3 size={size} color={color} />
                     )
                 }}
             />
@@ -64,7 +64,7 @@ export default function AdminLayout() {
                 options={{
                     title: "Products",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="cube-outline" size={size} color={color} />
+                        <Box size={size} color={color} />
                     )
                 }}
             />
@@ -73,7 +73,7 @@ export default function AdminLayout() {
                 options={{
                     title: "Orders",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="receipt-outline" size={size} color={color} />
+                       <ReceiptText size={size} color={color} />
                     )
                 }}
             />
