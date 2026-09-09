@@ -4,17 +4,20 @@ import { ProductCardProps } from "../constants/types";
 import { Image, Text } from "react-native";
 import { useState } from "react";
 import { Heart, Star, StarHalf } from 'lucide-react-native';
+import { useWishlist } from "../context/WishListContext";
 
 
 export default function ProductCard(props: ProductCardProps) {
     const { product } = props;
 
-    const [isLiked, setIsLiked] = useState(false);
+    const {toggleWishlist, isInWishlist} = useWishlist();
+
+    const isLiked = isInWishlist(product._id);
 
     return (
         <Link href={`/product/${product._id}`} asChild>
             <TouchableOpacity key={`product-${product._id}`} onPress={() => router.push('/')}>
-                <View className="relative w-40 h-56 bg-white rounded-xl shadow-md overflow-hidden">
+                <View className="relative w-40 h-56 bg-white rounded-xl shadow-md overflow-hidden mb-4">
                     <Image source={{ uri: product.images?.[0] ?? '' }} className="w-full h-32" resizeMode="cover" />
                     <View className="p-2">
                         <View className="flex-row items-center mb-1">
@@ -35,7 +38,10 @@ export default function ProductCard(props: ProductCardProps) {
                         <Text className="text-sm font-bold text-primary" numberOfLines={1}>{product.name}</Text>
                         <Text className="text-sm text-secondary">${product.price.toFixed(2)}</Text>
                     </View>
-                    <TouchableOpacity className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-sm" onPress={() => setIsLiked(!isLiked)}>
+                    <TouchableOpacity className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-sm" onPress={(e) => {
+                        e.stopPropagation();
+                        toggleWishlist(product);
+                    }}>
                         {
                             isLiked ? (
                                 <Heart size={14} fill='#FF4C3B' stroke='#FF4C3B'/>

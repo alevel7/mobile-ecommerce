@@ -33,11 +33,7 @@ export default function Index() {
   }
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      loadProducts();
-    }, 3000);
-    // clear timeout when component unmounts
-    return () => clearTimeout(timeout);
+    loadProducts();
   }, []);
 
   return (
@@ -115,7 +111,7 @@ export default function Index() {
         <View className="mb-6">
           <View className="flex-row justify-between items-center mb-4">
             <Text className="text-lg font-bold text-primary">Products</Text>
-            <TouchableOpacity onPress={() => router.push('/')}>
+            <TouchableOpacity onPress={() => router.push('/shop')}>
               <Text className="text-sm text-secondary">See all</Text>
             </TouchableOpacity>
           </View>
@@ -123,11 +119,11 @@ export default function Index() {
           {
             loading ?
               ActivityIndicator ? <ActivityIndicator size="large" color="#FF4C3B" /> : <Text>Loading...</Text> :
-              products.length === 0 ?
-                <Text className="text-secondary">No products available.</Text> :
+              // products.length === 0 ?
+              //   <Text className="text-secondary">No products available.</Text> :
                 <View className="flex-row flex-wrap justify-between">
                   {
-                    products.slice(0, 5).map((product) => (
+                    products.slice(0, 15).map((product) => (
                       <ProductCard key={`product-${product._id}`} product={product} />
                     ))
                   }
