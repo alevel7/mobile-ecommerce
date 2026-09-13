@@ -76,7 +76,7 @@ export default function Addresses() {
     };
 
     return (
-        <SafeAreaView className="flex-1 bg-surface" edges={['top']}>
+        <SafeAreaView className="flex-1 bg-gray-200" edges={['top']}>
             <Header title="Shipping Addresses" showBack />
 
             {loading ? (
@@ -151,27 +151,27 @@ export default function Addresses() {
                             </View>
 
                             <Text className="text-primary font-medium mb-2">Street Address</Text>
-                            <TextInput className="bg-surface p-4 rounded-xl text-primary mb-4" placeholder="123 Main St" value={street} onChangeText={setStreet} />
+                            <TextInput className="bg-gray-200 p-4 rounded-xl text-primary mb-4" placeholder="123 Main St" value={street} onChangeText={setStreet} />
 
                             <View className="flex-row gap-4 mb-4">
                                 <View className="flex-1">
                                     <Text className="text-primary font-medium mb-2">City</Text>
-                                    <TextInput className="bg-surface p-4 rounded-xl text-primary" placeholder="New York" value={city} onChangeText={setCity} />
+                                    <TextInput className="bg-gray-200 p-4 rounded-xl text-primary" placeholder="New York" value={city} onChangeText={setCity} />
                                 </View>
                                 <View className="flex-1">
                                     <Text className="text-primary font-medium mb-2">State</Text>
-                                    <TextInput className="bg-surface p-4 rounded-xl text-primary" placeholder="NY" value={state} onChangeText={setState} />
+                                    <TextInput className="bg-gray-200 p-4 rounded-xl text-primary" placeholder="NY" value={state} onChangeText={setState} />
                                 </View>
                             </View>
 
                             <View className="flex-row gap-4 mb-4">
                                 <View className="flex-1">
                                     <Text className="text-primary font-medium mb-2">Zip Code</Text>
-                                    <TextInput className="bg-surface p-4 rounded-xl text-primary" placeholder="10001" value={zipCode} onChangeText={setZipCode} keyboardType="numeric" />
+                                    <TextInput className="bg-gray-200 p-4 rounded-xl text-primary" placeholder="10001" value={zipCode} onChangeText={setZipCode} keyboardType="numeric" />
                                 </View>
                                 <View className="flex-1">
                                     <Text className="text-primary font-medium mb-2">Country</Text>
-                                    <TextInput className="bg-surface p-4 rounded-xl text-primary" placeholder="USA" value={country} onChangeText={setCountry} />
+                                    <TextInput className="bg-gray-200 p-4 rounded-xl text-primary" placeholder="USA" value={country} onChangeText={setCountry} />
                                 </View>
                             </View>
 

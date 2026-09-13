@@ -57,7 +57,7 @@ export default function Checkout() {
         } else if (paymentMethod === 'cash') {
             // Handle cash on delivery logic here
         }
-        // router.replace('/orders');
+        router.replace('/orders');
     }
 
     useEffect(() => {
@@ -85,7 +85,7 @@ export default function Checkout() {
                         <View className='bg-white p-4 rounded-xl mb-6 shadow-lg'>
                             <View className='flex-row items-center justify-between mb-2'>
                                 <Text className='text-base font-bold'>{selectedAddress.type}</Text>
-                                <TouchableOpacity onPress={() => router.push('/') }>
+                                <TouchableOpacity onPress={() => router.push('/addresses') }>
                                     <Text className='text-accent text-sm'>Change</Text>
                                 </TouchableOpacity>
                             </View>

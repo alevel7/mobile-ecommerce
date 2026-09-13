@@ -18,7 +18,7 @@ export default function Profile() {
   const handleLogout = async() => {
     // Implement logout logic here
     console.log("User logged out");
-    router.replace('/');
+    // router.replace('/');
   }
   return (
     <SafeAreaView className="flex-1 bg-gray-100" edges={['top']}>

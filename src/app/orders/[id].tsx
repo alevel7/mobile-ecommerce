@@ -51,7 +51,7 @@ export default function OrderDetails() {
     ];
 
     return (
-        <SafeAreaView className="flex-1 bg-surface" edges={['top']}>
+        <SafeAreaView className="flex-1 bg-gray-200" edges={['top']}>
             <Header title={`Order #${order.orderNumber}`} showBack />
 
             <ScrollView className="flex-1 px-4 pt-4">
