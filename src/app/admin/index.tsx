@@ -41,7 +41,7 @@ export default function AdminDashboard() {
 
     return (
         <ScrollView
-            className="flex-1 bg-surface p-4"
+            className="flex-1 p-4"
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
             <View className="mb-8">

@@ -23,7 +23,7 @@ export default function Orders() {
     }, []);
 
     return (
-        <SafeAreaView className="flex-1 bg-surface" edges={['top']}>
+        <SafeAreaView className="flex-1" edges={['top']}>
             <Header title="My Orders" showBack />
 
             {loading ? (

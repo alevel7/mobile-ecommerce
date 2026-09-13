@@ -54,7 +54,7 @@ export default function AdminProducts() {
     }
 
     return (
-        <View className="flex-1 bg-surface">
+        <View className="flex-1">
             <View className="p-4 bg-white border border-gray-100 flex-row justify-between items-center">
                 <Text className="text-lg font-semibold text-primary">Total Products ({products.length})</Text>
                 <TouchableOpacity
@@ -75,8 +75,8 @@ export default function AdminProducts() {
                         <Text className="text-secondary">No products found</Text>
                     </View>
                 ) : (
-                    products.map((product: any) => (
-                        <View key={product._id} className="bg-white p-3 rounded-lg border border-gray-100 mb-3 flex-row items-center">
+                    products.map((product: any, index: number) => (
+                        <View key={`${product._id}-${index}`} className="bg-white p-3 rounded-lg border border-gray-100 mb-3 flex-row items-center">
                             <Image
                                 source={{ uri: product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150' }}
                                 className="w-16 h-16 rounded-lg bg-gray-100 mr-3"
